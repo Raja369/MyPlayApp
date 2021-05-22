@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/mvc">
+
+<head>
+<title>MyPlayApp</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script
+	src='https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js'></script>
+
+
+
+
+</head>
+
+<body onload="checkUser();getTopTracks();getTopArtists();"
+	style="background-image: url('./img/background.jpg');">
+
+
+
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+		<!-- Brand/logo -->
+		<a class="navbar-brand" href="#"> <img src="./img/Musix.jpg"
+			alt="logo" width="80px;" height="80px">
+		</a>
+
+		<!-- Links -->
+		<ul class="navbar-nav">
+			<li class="nav-item"><a class="nav-link"
+				href="./"><h4>
+						<font color=white>Musix App</font>
+					</h4></a></li>
+		</ul>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<center>
+			<nav
+				class="navbar navbar-center navbar-expand-sm bg-dark navbar-dark">
+				<form class="form-inline" action="./results">
+
+					<select class="form-control" id="filter" name="method" required>
+						<option value="" selected=true>Apply Filter</option>
+
+						<option value="artist">Artists</option>
+						<option value="track">Track</option>
+
+					</select> &nbsp;&nbsp; <input class="form-control mr-sm-2" type="text"
+						size=50 placeholder="Search" name="query" id="query" required>
+					<button class="btn btn-success" type="submit" id="search">Search</button>
+				</form>
+			</nav>
+		</center>
+		<div id="checked_login"></div>
+
+
+	</nav>
+
+
+
+	<br>
+	<br>
+	<center>
+		<h2>
+			<font color=white><b>Top Artists</b></font>
+		</h2>
+	</center>
+	<br>
+
+	<div class="container-fluid">
+		<div class="row" style="margin-top: 0px" id="top_artists"></div>
+	</div>
+
+	<br>
+	<hr
+		style="height: 2px; border-width: 0; color: gray; background-color: gray">
+	<center>
+		<h2>
+			<font color=white><b><u>Top Tracks</u></b></font>
+		</h2>
+	</center>
+	<br>
+
+	<div class="container-fluid">
+		<div class="row" style="margin-top: 0px" id="top_tracks"></div>
+	</div>
+
+
+
+
+	<style>
+.navbar-nav.navbar-center {
+	position: absolute;
+	left: 50%;
+	transform: translatex(-50%);
+}
+
+.track-name {
+	font: italic small-caps bold 15px/30px Georgia, serif;
+	color: white;
+}
+
+.artist-name {
+	font: italic small-caps bold 15px/30px Georgia, serif;
+}
+</style>
+
+	<script>
+		function checkUser() {
+			$
+					.ajax({
+						type : "GET",
+						url : "./GetUser",
+						success : function(response) {
+
+							if (!response.hasOwnProperty("Email")) {
+
+								$("#checked_login")
+										.html("<ul class='navbar-nav' style='margin-left: auto;'><li class='nav-item'><a class='nav-link btn btn-info' href='./register'><font color=white><b>Sign Up</b></font></a></li> &nbsp;&nbsp;&nbsp;<li class='nav-item'><a class='nav-link btn btn-info' href='./login'><font color=white><b>Login</b></font></a></li></ul>");
+												
+							} else {
+								$("#checked_login")
+								.html("<ul class='navbar-nav' style='margin-left: auto;'><li class='nav-item'><a class='nav-link btn btn-info' href=\"./MyMusic\"><font color=white><b>My Music Board</b></font></a></li> &nbsp;&nbsp;&nbsp;<li class='nav-item'><a class='nav-link ' href='./logout'><font color=white><b>LogOut</b></font></a></li>&nbsp;&nbsp;&nbsp;<a class='navbar-item' href='./profile'><li><span id='user_name'> <font size=6 color=red><b>"+response["UserName"]+"</b></font></span></li><li class='nav-item'><img  id='user_img' src='./img/"+response["img"]+"' alt='log' width='40px' height='40px'></a></li></ul>");
+						}
+						},
+						error : function(data) {
+							$("#checked_login")
+							.html("<ul class='navbar-nav' style='margin-left: auto;'><li class='nav-item'><a class='nav-link btn btn-info' href='./register'><font color=white><b>Sign Up</b></font></a></li> &nbsp;&nbsp;&nbsp;<li class='nav-item'><a class='nav-link btn btn-info' href='./login'><font color=white><b>Login</b></font></a></li></ul>");
+									
+			
+						}
+					});
+
+		}
+		function getTopArtists(){
+
+			$.ajax({
+				type : 'GET',
+				url : "http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=96d3b104aaebc0457c0b1147de085f1d&format=json",
+
+				success : function(jsonData) {
+				
+					if(jsonData.hasOwnProperty("artists")){
+						
+						var artists=jsonData["artists"];
+						var ArtistsHTML="";
+						var k=0;
+						$.each(artists["artist"], function (index, artist){
+							k++;
+							var artist_name=artist.name;
+							var img=artist.image[1]["#text"];
+							var track="";
+							ArtistsHTML+='<div class="col-sm-2 mt-3"><div class="card shadow-xl rounded" style="box-shadow: 0 0 9px 0px black;"><div class="card-body bg-gray" style="padding-bottom: 0px !important"><center><div class="track-name" id="track_'+k+'">'+track+'</div><img src="'+img+'" class="img-thumbnail v" id="img_'+k+'"><div class="artist-name" id="artist_'+k+'">'+artist_name+'</div></center></div></div></div>';
+							if(k>=18)
+								return false;
+						});
+						$("#top_artists").html(ArtistsHTML);
+					}else{
+						
+					}
+				}
+			});
+			
+	}
+
+
+	function getTopTracks(){
+
+		$.ajax({
+			type : 'GET',
+			url : "http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=india&api_key=96d3b104aaebc0457c0b1147de085f1d&format=json",
+
+			success : function(jsonData) {
+			
+				if(jsonData.hasOwnProperty("tracks")){
+					
+					var artists=jsonData["tracks"];
+					var TracksHTML="";
+					var k=0;
+					$.each(artists["track"], function (index, track){
+						k++;
+						var track_name=track.name;
+						var img=track.image[1]["#text"];
+						var artist_name="";
+						TracksHTML+='<div class="col-sm-2 mt-3"><div class="card shadow-xl rounded" style="box-shadow: 0 0 9px 0px black;"><div class="card-body bg-primary" style="padding-bottom: 0px !important"><center><div class="track-name" id="track_'+k+'">'+track_name+'</div><img src="'+img+'" class="img-thumbnail v" id="img_'+k+'"><div class="artist-name" id="artist_'+k+'">'+artist_name+'</div></center></div></div></div>';
+						if(k>=18)
+							return false;
+					});
+					$("#top_tracks").html(TracksHTML);
+				}else{
+					
+				}
+			}
+		});
+
+	}
+	</script>
+</body>
+</html>

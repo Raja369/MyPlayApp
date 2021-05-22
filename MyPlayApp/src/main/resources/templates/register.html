@@ -1,0 +1,186 @@
+<html lang="en" xmlns:th="http://www.springframework.org/schema/mvc">
+
+<head>
+<title>MyPlayApp | Register</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script th:src="@{/static/main.js}"></script>
+<script
+	src='https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js'></script>
+
+<style>
+body {
+	margin: 0;
+	padding: 0;
+	background-image: url("./img/login.jpg");
+	background-repeat: no-repeat;
+   background-size: cover;
+   background-position: center;
+	height: 100vh;
+}
+
+#register .container #login-row #login-column #login-box {
+	margin-top: 120px;
+	max-width: 600px;
+	height: 520px;
+	border: 1px solid #9C9C9C;
+	background-color: #EAEAEA;
+}
+
+#login .container #login-row #login-column #login-box #login-form {
+	padding: 20px;
+}
+
+#login .container #login-row #login-column #login-box #login-form #register-link
+	{
+	margin-top: -85px;
+}
+</style>
+
+</head>
+<body>
+	<div id="register">
+
+		<div class="container">
+			<div id="login-row"
+				class="row justify-content-center align-items-center">
+				<div id="login-column" class="col-md-6">
+					<div id="login-box" class="col-md-12">
+						<form id="register-form" class="form">
+							<h3 class="text-center text-info">MyPlayApp Registration</h3>
+							<div class="form-group">
+								<label for="password" class="text-info">User Name :</label><br> <input type="text" name="name" id="name"
+									class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="username" class="text-info">Email :</label><br>
+								<input type="email" name="email" id="email" class="form-control">
+							</div>
+
+							<div class="form-group">
+								<label for="password" class="text-info">Password:</label><br>
+								<input type="password" name="password" id="password"
+									class="form-control">
+							</div>
+
+							<div class="form-group">
+								<label for="password" class="text-info">Confirm
+									Password:</label><br> <input type="password" name="password"
+									id="confpassword" class="form-control">
+							</div>
+						</form>
+						<form id="register-form-pic" class="form"
+							enctype="multipart/form-data">
+							<div class="form-group">
+								<input type="file" name="profile" id="profile"
+									class="form-control" accept="image/x-png,image/gif,image/jpeg">
+							</div>
+						</form>
+
+						<div class="form-group">
+							<a href="./" class="btn btn-success" role="button">Home</a> <input
+								type="button" name="submit"
+								class="btn btn-info btn-md float-right" onclick="registerUser()" id="signup" value="submit">
+						</div>
+						<p id="error_msg"></p>
+						<br>
+						<br>
+					
+
+
+	
+						<center>
+							<a href="./login" class="btn btn-warning" role="button"><b>Login</b></a>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script>
+
+function registerUser(){
+	
+	
+	var userName=$("#name").val();
+	var userEmail=$("#email").val();
+	var userPass=$("#password").val();
+	var userConfPass=$("#confpassword").val();
+	if(userName.trim()==""){
+		$("#error_msg").html("<font color=red> Please enter user name</font>");
+		return;
+	}
+	if(userEmail.trim()=="" || !validateEmail(userEmail)){
+		$("#error_msg").html("<font color=red> Please enter valid email</font>");
+		return;
+	}
+	if(userPass.trim()=="" || userPass.trim().length<6){
+		$("#error_msg").html("<font color=red> Password must contain atleast 6 characters</font>");
+		return;
+	}
+	
+	if(userPass!=userConfPass){
+		$("#error_msg").html("<font color=red> Password and confirm password must match</font>");
+		return;
+	}
+	
+	var fileName = $("#profile").val();
+
+    if(fileName) { // returns true if the string is not empty
+        
+    } else { // no file was selected
+    	$("#error_msg").html("<font color=red> Please select profile pic</font>");
+		return;
+    }
+	
+	
+	var form = $('#register-form-pic')[0];
+	var data = new FormData(form);
+	var jsonDataObj = {
+		"name": userName,
+	    "email" : userEmail,
+	    "password" : userPass
+	};
+	data.append("jsondata", JSON.stringify(jsonDataObj));
+	
+	$.ajax({
+	    type: "POST",
+	    enctype: 'multipart/form-data',
+	    url: "../RegisterUser",
+	    data: data,
+	    processData: false,
+	    contentType: false,
+	    cache: false,
+	    timeout: 600000,
+	    success: function (data) {
+	    	if(data.hasOwnProperty("UserCreated")){
+	    		$("#error_msg").html("<font color=green>User registration successful</font>");
+	    	}else{
+	    		$("#error_msg").html("<font color=red>"+data["Error"]+"</font>");
+	    	}
+		}
+	});
+}
+
+
+	 function validateEmail(test_string){
+	        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	         return re.test(test_string);
+	    }
+	
+
+</script>
+
+
+
+</html>

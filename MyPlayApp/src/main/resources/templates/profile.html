@@ -1,0 +1,218 @@
+<html lang="en" xmlns:th="http://www.springframework.org/schema/mvc">
+
+<head>
+<title>MyPlayApp | Profile</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script th:src="@{/static/main.js}"></script>
+<script
+	src='https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js'></script>
+
+<style>
+body {
+	margin: 0;
+	padding: 0;
+    background-image: url("./img/login.jpg");
+    background-repeat: no-repeat;
+   background-size: cover;
+   background-position: center;
+	height: 100vh;
+}
+
+#register .container #login-row #login-column #login-box {
+	margin-top: 120px;
+	max-width: 600px;
+	height: 520px;
+	border: 1px solid #9C9C9C;
+	background-color: #EAEAEA;
+}
+
+#login .container #login-row #login-column #login-box #login-form {
+	padding: 20px;
+}
+
+#login .container #login-row #login-column #login-box #login-form #register-link
+	{
+	margin-top: -85px;
+}
+</style>
+
+</head>
+<body>
+
+
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+		<!-- Brand/logo -->
+		<a class="navbar-brand" href="#"> <img src="./img/Musix.jpg"
+			alt="logo" width="80px" height="80px">
+		</a>
+
+		<!-- Links -->
+		<ul class="navbar-nav">
+			<li class="nav-item"><a class="nav-link"
+				href="../"><h4>
+						<font color=white>Musix App</font>
+					</h4></a></li>
+		</ul>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<center>
+			<nav
+				class="navbar navbar-center navbar-expand-sm bg-dark navbar-dark">
+				<form class="form-inline" action="./results">
+
+					<select class="form-control" id="filter" name="method" required>
+						<option value="" selected=true>Apply Filter</option>
+
+						<option value="artist">Artists</option>
+						<option value="track">Track</option>
+
+					</select> &nbsp;&nbsp; <input class="form-control mr-sm-2" type="text"
+						size=50 placeholder="Search" name="query" required>
+					<button class="btn btn-success" type="submit">Search</button>
+				</form>
+			</nav>
+		</center>
+		<div id="checked_login"></div>
+
+
+	</nav>
+	<div id="register">
+
+		<div class="container">
+			<div id="login-row"
+				class="row justify-content-center align-items-center">
+				<div id="login-column" class="col-md-6">
+					<div id="login-box" class="col-md-12">
+						<form id="register-form" class="form">
+							<h3 class="text-center text-info">MyPlayApp Profile</h3>
+							<div class="form-group">
+								<label for="password" class="text-info">User Name :</label><br> <input readonly type="text" name="name" id="name"
+									class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="username" class="text-info">Email :</label><br>
+								<input type="email" name="email" id="email" class="form-control" readonly>
+							</div>
+
+							<div class="form-group">
+								<label for="password" class="text-info">Old Password:</label><br>
+								<input type="password" name="password" id="oldpass"
+									class="form-control">
+							</div>
+
+							<div class="form-group">
+								<label for="password" class="text-info">New
+									Password:</label><br> <input type="password" name="confpassword"
+									id="newpass" class="form-control">
+							</div>
+						</form>
+					
+
+						<div class="form-group">
+							 <input
+								type="button" name="submit"
+								class="btn btn-info btn-md float-right" onclick="updateUser()" value="Update">
+						</div>
+						<p id="error_msg"></p>
+						<br>
+
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script>
+
+
+
+
+
+
+
+
+
+function checkUser() {
+	$
+			.ajax({
+				type : "GET",
+				url : "./GetUser",
+				success : function(response) {
+
+					if (!response.hasOwnProperty("Email")) {
+
+						window.location.href="./login";					
+					} else {
+						$("#checked_login")
+						.html("<ul class='navbar-nav' style='margin-left: auto;'><li class='nav-item'><a class='nav-link btn btn-info' href=\"./MyMusic\"><font color=white><b>My Music Board</b></font></a></li> &nbsp;&nbsp;&nbsp;<li class='nav-item'><a class='nav-link ' href='./logout'><font color=white><b>LogOut</b></font></a></li>&nbsp;&nbsp;&nbsp;<a class='navbar-item' href='./profile'><li><span id='user_name'> <font size=6 color=red><b>"+response["UserName"]+"</b></font></span></li><li class='nav-item'><img  id='user_img' src='./img/"+response["img"]+"' alt='log' width='40px' height='40px'></a></li></ul>");
+					$("#email").val(response["Email"]);
+						$("#name").val(response["UserName"]);
+					}
+				},
+				error : function(data) {
+					window.location.href="./login";	
+				}
+			});
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+function updateUser(){
+	var old=$("#oldpass").val();
+	if(old.trim()==""){
+		$("#error_msg").html("<font color=red> Please enter old password</font>");
+		return;
+	}
+	var newp=$("#newpass").val();
+	
+	if(newp.trim().length<6){
+		$("#error_msg").html("<font color=red> Password must contain atleast 6 characters");
+		return;
+	}
+	$.ajax({
+        type:"POST",
+        url:"../updateUser",
+        data:{"oldPassword":old,"newPassword":newp},
+        success:function(response){
+            if(!response.hasOwnProperty("Error")){
+            	$("#error_msg").html("<font color=green>"+response["Updated"]+"</font>");
+            	
+			
+		} else {									
+			$("#error_msg").html("<font color=red>"+response["Error"]+"</font>");
+		}
+       },
+        error:function(data){
+            $("#error_msg").html("<font color=red>Try after some  time</font>");
+       }
+   });
+	
+}
+checkUser();
+</script>
+
+
+
+</html>

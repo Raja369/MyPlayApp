@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="25" passed="25" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2020-10-04T22:42:53 IST" name="Default suite" finished-at="2020-10-04T22:47:03 IST" duration-ms="249721">
+    <groups>
+    </groups>
+    <test started-at="2020-10-04T22:42:53 IST" name="Default test" finished-at="2020-10-04T22:47:03 IST" duration-ms="249721">
+      <class name="com.myplay.test.AutoTest">
+        <test-method is-config="true" signature="createDriver()[pri:0, instance:com.myplay.test.AutoTest@71c3b41]" started-at="2020-10-04T22:42:53 IST" name="createDriver" finished-at="2020-10-04T22:43:02 IST" duration-ms="8066" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createDriver -->
+        <test-method signature="searchWithoutLoginTrack()[pri:1, instance:com.myplay.test.AutoTest@71c3b41]" started-at="2020-10-04T22:43:02 IST" name="searchWithoutLoginTrack" description="Searching without login using track" finished-at="2020-10-04T22:43:11 IST" duration-ms="9904" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchWithoutLoginTrack -->
+        <test-method signature="searchWithoutLoginArtist()[pri:2, instance:com.myplay.test.AutoTest@71c3b41]" started-at="2020-10-04T22:43:12 IST" name="searchWithoutLoginArtist" description="Searching without login using artists" finished-at="2020-10-04T22:43:19 IST" duration-ms="7838" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchWithoutLoginArtist -->
+        <test-method signature="searchWithoutLoginByArtistAddFavourite()[pri:3, instance:com.myplay.test.AutoTest@71c3b41]" started-at="2020-10-04T22:43:19 IST" name="searchWithoutLoginByArtistAddFavourite" description="Searching without login using artists and add to favourites" finished-at="2020-10-04T22:43:31 IST" duration-ms="11913" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchWithoutLoginByArtistAddFavourite -->
+        <test-method signature="validatingSignUpbutton()[pri:4, instance:com.myplay.test.AutoTest@71c3b41]" started-at="2020-10-04T22:43:31 IST" name="validatingSignUpbutton" description="Validating User SignUp button" finished-at="2020-10-04T22:43:36 IST" duration-ms="4721" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validatingSignUpbutton -->
+        <test-method signature="validatingHomebuttonFromRegisterPage()[pri:5, instance:com.myplay.test.AutoTest@71c3b41]" started-at="2020-10-04T22:43:36 IST" name="validatingHomebuttonFromRegisterPage" description="Validating Home button from Registration page" finished-at="2020-10-04T22:43:41 IST" duration-ms="5419" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validatingHomebuttonFromRegisterPage -->
+        <test-method signature="validatingHomebuttonFromLoginPage()[pri:6, instance:com.myplay.test.AutoTest@71c3b41]" started-at="2020-10-04T22:43:41 IST" name="validatingHomebuttonFromLoginPage" description="Validating Home button from Login page" finished-at="2020-10-04T22:43:48 IST" duration-ms="6258" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validatingHomebuttonFromLoginPage -->
+        <test-method signature="uiFormValidation()[pri:7, instance:com.myplay.test.AutoTest@71c3b41]" started-at="2020-10-04T22:43:48 IST" name="uiFormValidation" description="Validating User Registration Form" finished-at="2020-10-04T22:43:55 IST" duration-ms="6864" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- uiFormValidation -->
+        <test-method signature="uiFormValidationUsername()[pri:8, instance:com.myplay.test.AutoTest@71c3b41]" started-at="2020-10-04T22:43:55 IST" name="uiFormValidationUsername" description="Validating User Registration Form with Username field blank" finished-at="2020-10-04T22:44:01 IST" duration-ms="5969" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- uiFormValidationUsername -->
+        <test-method signature="uiFormValidationEmail()[pri:9, instance:com.myplay.test.AutoTest@71c3b41]" started-at="2020-10-04T22:44:01 IST" name="uiFormValidationEmail" description="Validating User Registration Form with invalid email" finished-at="2020-10-04T22:44:07 IST" duration-ms="6544" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- uiFormValidationEmail -->
+        <test-method signature="loginUserFail()[pri:10, instance:com.myplay.test.AutoTest@71c3b41]" started-at="2020-10-04T22:44:07 IST" name="loginUserFail" description="User login validation" finished-at="2020-10-04T22:44:13 IST" duration-ms="5650" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginUserFail -->
+        <test-method signature="loginUser()[pri:11, instance:com.myplay.test.AutoTest@71c3b41]" started-at="2020-10-04T22:44:13 IST" name="loginUser" description="User login and check user name displayed in header" finished-at="2020-10-04T22:44:19 IST" duration-ms="5932" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginUser -->
+        <test-method signature="searchTrack()[pri:12, instance:com.myplay.test.AutoTest@71c3b41]" started-at="2020-10-04T22:44:19 IST" name="searchTrack" description="Search tracks add track into recommendations" finished-at="2020-10-04T22:45:22 IST" duration-ms="63085" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchTrack -->
+        <test-method signature="verifyRecommendation()[pri:13, instance:com.myplay.test.AutoTest@71c3b41]" started-at="2020-10-04T22:45:22 IST" name="verifyRecommendation" description="Validating tracks added into recommendations" finished-at="2020-10-04T22:45:24 IST" duration-ms="2495" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyRecommendation -->
+        <test-method signature="deleteRecommendation()[pri:14, instance:com.myplay.test.AutoTest@71c3b41]" started-at="2020-10-04T22:45:24 IST" name="deleteRecommendation" description="Deleting track from recommendations" finished-at="2020-10-04T22:45:30 IST" duration-ms="5706" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- deleteRecommendation -->
+        <test-method signature="searchTrackAndValidatePageNumber()[pri:15, instance:com.myplay.test.AutoTest@71c3b41]" started-at="2020-10-04T22:45:30 IST" name="searchTrackAndValidatePageNumber" description="Validating page Number after searching" finished-at="2020-10-04T22:45:38 IST" duration-ms="8267" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchTrackAndValidatePageNumber -->
+        <test-method signature="searchTrackAndValidateItemsPerPage()[pri:16, instance:com.myplay.test.AutoTest@71c3b41]" started-at="2020-10-04T22:45:38 IST" name="searchTrackAndValidateItemsPerPage" description="Validating items per page after searching" finished-at="2020-10-04T22:45:45 IST" duration-ms="7214" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchTrackAndValidateItemsPerPage -->
+        <test-method signature="searchTrackAndValidateNextPage()[pri:17, instance:com.myplay.test.AutoTest@71c3b41]" started-at="2020-10-04T22:45:45 IST" name="searchTrackAndValidateNextPage" description="Validating page Number after searching" finished-at="2020-10-04T22:45:59 IST" duration-ms="13846" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchTrackAndValidateNextPage -->
+        <test-method signature="searchTrackAndValidateNumberOfItemPerPage()[pri:18, instance:com.myplay.test.AutoTest@71c3b41]" started-at="2020-10-04T22:45:59 IST" name="searchTrackAndValidateNumberOfItemPerPage" description="Validating number of items per page after searching" finished-at="2020-10-04T22:46:14 IST" duration-ms="14904" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchTrackAndValidateNumberOfItemPerPage -->
+        <test-method signature="verifyLogOut()[pri:19, instance:com.myplay.test.AutoTest@71c3b41]" started-at="2020-10-04T22:46:14 IST" name="verifyLogOut" description="Verifing user log out" finished-at="2020-10-04T22:46:22 IST" duration-ms="8085" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyLogOut -->
+        <test-method signature="loginUserAfterLogout()[pri:20, instance:com.myplay.test.AutoTest@71c3b41]" started-at="2020-10-04T22:46:22 IST" name="loginUserAfterLogout" description="User login and check user name displayed in header" finished-at="2020-10-04T22:46:29 IST" duration-ms="7178" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginUserAfterLogout -->
+        <test-method signature="verfiyProfile()[pri:21, instance:com.myplay.test.AutoTest@71c3b41]" started-at="2020-10-04T22:46:29 IST" name="verfiyProfile" description="Validating the profile" finished-at="2020-10-04T22:46:30 IST" duration-ms="1016" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verfiyProfile -->
+        <test-method signature="validateUpdatePassword()[pri:22, instance:com.myplay.test.AutoTest@71c3b41]" started-at="2020-10-04T22:46:30 IST" name="validateUpdatePassword" description="Validating Update Password" finished-at="2020-10-04T22:46:39 IST" duration-ms="8829" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateUpdatePassword -->
+        <test-method signature="validateLogOut()[pri:23, instance:com.myplay.test.AutoTest@71c3b41]" started-at="2020-10-04T22:46:39 IST" name="validateLogOut" description="Verifing user log out" finished-at="2020-10-04T22:46:47 IST" duration-ms="7763" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateLogOut -->
+        <test-method signature="verifyLoginAfterUpdatingPassword()[pri:24, instance:com.myplay.test.AutoTest@71c3b41]" started-at="2020-10-04T22:46:47 IST" name="verifyLoginAfterUpdatingPassword" description="Verifing user login after Updating password" finished-at="2020-10-04T22:46:55 IST" duration-ms="7634" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyLoginAfterUpdatingPassword -->
+        <test-method signature="verifyLogOutAterUpdatingPassword()[pri:25, instance:com.myplay.test.AutoTest@71c3b41]" started-at="2020-10-04T22:46:55 IST" name="verifyLogOutAterUpdatingPassword" description="Verifing user log out after updating password" finished-at="2020-10-04T22:47:03 IST" duration-ms="8209" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyLogOutAterUpdatingPassword -->
+        <test-method is-config="true" signature="destroyDriver()[pri:0, instance:com.myplay.test.AutoTest@71c3b41]" started-at="2020-10-04T22:47:03 IST" name="destroyDriver" finished-at="2020-10-04T22:47:03 IST" duration-ms="269" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- destroyDriver -->
+      </class> <!-- com.myplay.test.AutoTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
